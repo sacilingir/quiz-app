@@ -41,11 +41,11 @@ const quiz = new Quiz(sorular);
 document.querySelector(".btn-start").addEventListener("click", function () {
   document.querySelector(".quiz_box").classList.add("active");
   soruGoster(quiz.soruGetir());
-  quiz.soruIndex+=1;
+  quiz.soruIndex += 1;
 });
 
 document.querySelector(".next_btn").addEventListener("click", function () {
-  if (quiz.sorular.length != quiz.soruIndex ) {
+  if (quiz.sorular.length != quiz.soruIndex) {
     soruGoster(quiz.soruGetir());
     quiz.soruIndex += 1;
   } else {
