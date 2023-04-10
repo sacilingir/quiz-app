@@ -39,11 +39,32 @@ Quiz.prototype.soruGetir = function () {
 const quiz = new Quiz(sorular);
 
 document.querySelector(".btn-start").addEventListener("click", function () {
-  if (quiz.sorular.length != quiz.soruIndex) {
-    document.querySelector(".quiz_box").classList.add("active")
-    console.log(quiz.soruGetir());
-    quiz.soruIndex++
+  document.querySelector(".quiz_box").classList.add("active");
+  soruGoster(quiz.soruGetir());
+  quiz.soruIndex+=1;
+});
+
+document.querySelector(".next_btn").addEventListener("click", function () {
+  if (quiz.sorular.length != quiz.soruIndex ) {
+    soruGoster(quiz.soruGetir());
+    quiz.soruIndex += 1;
   } else {
     console.log("quiz bitti.");
   }
 });
+
+function soruGoster(quiz_sorugetir) {
+  let question = `<span>${quiz_sorugetir.soruMetni}</span>`;
+  let options = "";
+
+  for (let cevap in quiz_sorugetir.cevaplar) {
+    options += `
+        <div class="option">
+        <span><b>${cevap}</b>${quiz_sorugetir.cevaplar[cevap]}</span>
+        </div>
+        `;
+  }
+
+  document.querySelector(".question_text").innerHTML = question;
+  document.querySelector(".option_list").innerHTML = options;
+}
